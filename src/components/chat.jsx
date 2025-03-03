@@ -20,16 +20,20 @@ const ChatWidget = () => {
 
   const dispatch = useDispatch();
 
+
   const messages = useSelector((state) => state.chat.messages);
 
+  //current login user redux nunchi tesukuntunam
   const currentUser = useSelector((state) => state.user);
   
+  //alage bot user 
   const botUser = {
     fname: 'Chat',
     lname: 'Support',
     userProfile: null
   }
   
+  //EDI AUTOMATIC SCROLL KOSAM
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -68,6 +72,7 @@ const ChatWidget = () => {
     //     answer = "Our support team is here to help! Please describe your issue, and I'll guide you.";
     // } 
     
+    //edi typing effect kosam 2 secs delay petta so ui typing.. ani vastadi chudadaniki baguntadi
     await new Promise((resolve) => setTimeout(resolve, 2000));
   
     dispatch(addMessage({ id: Date.now() + 1, text: answer, sender: "bot", timestamp: new Date() }));
